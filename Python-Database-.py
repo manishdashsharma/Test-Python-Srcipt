@@ -1,5 +1,5 @@
 import mysql.connector
-
+from ToMail import mail
 # database connection
 mydb = mysql.connector.connect(
   host="localhost",
@@ -22,4 +22,6 @@ for data in myresult:
 # finding the row which has error
 for i in range(len(DataforMail)):
     if DataforMail[i][2] == "Error":
-        print(f"There is an error in the row {DataforMail[i]}")
+        message = f"There some error {DataforMail[i][0]}"
+        status = mail("Error Reported",["mdashsharma95@gmail.com"],message)
+        print(status)
